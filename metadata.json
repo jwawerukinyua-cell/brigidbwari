@@ -1,0 +1,6 @@
+{
+  "name": "Teacher Brigid Bwari | Private Tuition Platform",
+  "description": "Teacher Brigid Bwari's dedicated 1-on-1 English & Literature tuition platform. 48-Hour No-Obligation Trial: Test interactive booking, set book analysis, M-PESA escrow, and candidate tracking with 100% ownership & zero Preply commission cuts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
