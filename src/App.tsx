@@ -86,7 +86,7 @@ export default function App() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
           <div>
-            <span className="text-xs font-mono tracking-widest text-amber-900 uppercase block mb-3 font-bold">
+            <span className="text-xs font-sans tracking-widest text-amber-900 uppercase block mb-3 font-bold">
               Qualified English & Literature Educator (B.Ed, Kabarak University)
             </span>
             <h1 className="text-4xl md:text-5xl font-serif text-stone-950 tracking-tight leading-tight mb-6 max-w-xl font-bold">
@@ -110,7 +110,7 @@ export default function App() {
 
           {/* EDITORIAL COLUMN: MEET YOUR TEACHER */}
           <div className="border border-stone-200/90 bg-white p-6 sm:p-7 rounded-2xl shadow-sm relative overflow-hidden">
-            <span className="text-xs font-mono tracking-widest text-amber-900 uppercase block mb-3 font-bold">
+            <span className="text-xs font-sans tracking-widest text-amber-900 uppercase block mb-3 font-bold">
               Your Professional Educator
             </span>
             
@@ -135,11 +135,11 @@ export default function App() {
 
               <div className="text-center sm:text-left">
                 <h3 className="text-2xl font-serif text-stone-950 font-bold">Teacher Brigid Bwari</h3>
-                <p className="text-xs font-mono text-amber-900 font-bold mt-1">B.Ed in English & Literature</p>
+                <p className="text-xs font-sans text-amber-900 font-bold mt-1">B.Ed in English & Literature</p>
                 <p className="text-xs text-stone-600 font-sans mt-1">Kabarak University (Second Class Upper)</p>
                 <div className="mt-3 flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                  <span className="text-[10px] font-mono bg-rose-100 text-rose-900 border border-rose-200 px-2 py-0.5 rounded-full font-bold">CBC & 8-4-4 Expert</span>
-                  <span className="text-[10px] font-mono bg-stone-100 text-stone-800 border border-stone-300 px-2 py-0.5 rounded-full font-bold">1-on-1 Tuition</span>
+                  <span className="text-[10px] font-sans bg-rose-100 text-rose-900 border border-rose-200 px-2 py-0.5 rounded-full font-bold">CBC & 8-4-4 Expert</span>
+                  <span className="text-[10px] font-sans bg-stone-100 text-stone-800 border border-stone-300 px-2 py-0.5 rounded-full font-bold">1-on-1 Tuition</span>
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function App() {
 
             {/* EMBEDDED INTRODUCTORY VIMEO VIDEO */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-[10px] font-mono text-amber-900 font-bold uppercase tracking-wider">
+              <div className="flex items-center justify-between text-[10px] font-sans text-amber-900 font-bold uppercase tracking-wider">
                 <span>Featured Intro Video</span>
                 <span className="text-stone-500 font-semibold">01:00</span>
               </div>
@@ -183,7 +183,7 @@ export default function App() {
           className="max-w-3xl mx-auto text-center"
         >
           <div className="bg-[#0F1B2E] border border-stone-800 p-8 rounded-2xl shadow-md text-white">
-            <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase block mb-2 font-bold">
+            <span className="text-[10px] font-sans tracking-widest text-amber-400 uppercase block mb-2 font-bold">
               Interactive Enrollment
             </span>
             <h3 className="text-xl font-serif text-white mb-3 font-bold">
@@ -206,7 +206,7 @@ export default function App() {
           {bookingResult ? (
             <div className="space-y-4">
               <div className="text-center mb-2">
-                <span className="text-xs font-mono text-amber-900 font-bold uppercase">Interactive Placement Voucher</span>
+                <span className="text-xs font-sans text-amber-900 font-bold uppercase">Interactive Placement Voucher</span>
               </div>
               <DocumentDispatcher 
                 booking={bookingResult} 
@@ -237,7 +237,7 @@ export default function App() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-stone-800 text-center md:text-left">
             <div className="shrink-0">
               <span className="block font-serif text-lg font-bold tracking-tight text-white">Teacher Brigid Bwari Monari</span>
-              <span className="block font-mono text-[10px] tracking-widest text-amber-400 font-bold uppercase mt-0.5">English & Literature Private Tuition</span>
+              <span className="block font-sans text-[10px] tracking-widest text-amber-400 font-bold uppercase mt-0.5">English & Literature Private Tuition</span>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-3">
@@ -264,7 +264,7 @@ export default function App() {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setTimeout(() => setIsConsultationOpen(true), 400);
                 }}
-                className="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-stone-100 border border-stone-700 px-4 py-2 rounded-full text-xs font-mono font-bold transition-all cursor-pointer shadow-xs"
+                className="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-stone-100 border border-stone-700 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer shadow-xs"
               >
                 <span>Back to Top & Consult</span>
                 <span className="text-amber-400 font-extrabold">↑</span>
@@ -277,7 +277,7 @@ export default function App() {
             <div className="flex flex-col sm:flex-row items-center gap-2 text-[11px] text-stone-400 font-medium">
               <p>© 2026 Teacher Brigid Bwari. All rights reserved.</p>
               <span className="hidden sm:inline text-stone-600">•</span>
-              <p className="font-mono tracking-tight text-stone-400">Data Protection Act No. 24 of 2019 (Kenya)</p>
+              <p className="font-sans tracking-tight text-stone-400">Data Protection Act No. 24 of 2019 (Kenya)</p>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-stone-300 font-medium">
