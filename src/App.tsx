@@ -171,6 +171,15 @@ export default function App() {
 
         {/* VERIFIED OUTCOMES REVIEWS MATRIX */}
         <section id="profile" className="scroll-mt-20">
+          {/* Section Header matching H2 visual typography hierarchy */}
+          <div className="mb-8 text-center sm:text-left">
+            <span className="text-xs font-sans tracking-widest text-amber-900 uppercase block mb-2 font-bold">
+              Verified Learner Outcomes & Reserve English & Literature Tuition
+            </span>
+            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-stone-950 tracking-tight">
+              Verified Learner Outcomes & Reserve English & Literature Tuition
+            </h2>
+          </div>
           <Testimonials />
         </section>
 
@@ -310,7 +319,7 @@ export default function App() {
         onClose={() => setIsTeacherPortalOpen(false)}
       />
 
-      {/* PARENT PORTAL MODAL */}
+      (Parent Portal Modal)
       <ParentPortalModal
         isOpen={isParentPortalOpen}
         onClose={() => setIsParentPortalOpen(false)}
