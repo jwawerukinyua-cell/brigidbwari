@@ -66,7 +66,7 @@ export default function Navbar({
               <MKLogo />
             </div>
             <div>
-              <span className="block font-serif text-sm sm:text-base font-bold tracking-tight text-white">
+              <span className="block font-sans text-sm sm:text-base font-bold tracking-tight text-white">
                 <span className="sm:hidden">Tr. Brigid Bwari</span>
                 <span className="hidden sm:inline">Teacher Brigid Bwari</span>
               </span>
