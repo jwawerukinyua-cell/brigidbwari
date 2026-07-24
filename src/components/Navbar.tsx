@@ -60,14 +60,17 @@ export default function Navbar({
     <nav className="sticky top-0 z-40 w-full border-b border-stone-800 bg-[#0F1B2E] shadow-md backdrop-blur-md no-print text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo Brand: Logo icon & subtitle hidden on mobile, fully visible on desktop/tablet */}
+          {/* Logo Brand: 'Tr. Brigid Bwari' on mobile, full name on tablet/desktop */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavClick('profile')}>
             <div className="hidden sm:block">
               <MKLogo />
             </div>
             <div>
-              <span className="block font-serif text-sm sm:text-base font-bold tracking-tight text-white">Teacher Brigid Bwari</span>
-              <span className="hidden sm:block font-mono text-[9px] sm:text-[10px] tracking-wider text-amber-400 uppercase font-bold leading-none">English & Literature Specialist</span>
+              <span className="block font-serif text-sm sm:text-base font-bold tracking-tight text-white">
+                <span className="sm:hidden">Tr. Brigid Bwari</span>
+                <span className="hidden sm:inline">Teacher Brigid Bwari</span>
+              </span>
+              <span className="hidden sm:block font-sans text-[9px] sm:text-[10px] tracking-wider text-amber-400 uppercase font-bold leading-none">English & Literature Specialist</span>
             </div>
           </div>
 
@@ -77,10 +80,10 @@ export default function Navbar({
               <button
                 key={item.id}
                 onClick={() => onNavClick(item.id)}
-                className={`text-xs uppercase tracking-wider font-mono transition-colors duration-150 cursor-pointer ${
+                className={`text-xs uppercase tracking-wider font-sans font-medium transition-colors duration-150 cursor-pointer ${
                   activeSection === item.id
                     ? 'text-amber-400 font-bold border-b-2 border-amber-400 pb-0.5'
-                    : 'text-stone-300 hover:text-white font-medium'
+                    : 'text-stone-300 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -93,7 +96,7 @@ export default function Navbar({
             {onParentPortalClick && (
               <button
                 onClick={onParentPortalClick}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-stone-700 bg-stone-800/90 hover:bg-stone-700 px-3 py-1.5 text-xs font-mono text-stone-100 transition-all cursor-pointer font-medium"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-stone-700 bg-stone-800/90 hover:bg-stone-700 px-3 py-1.5 text-xs font-sans text-stone-100 transition-all cursor-pointer font-medium"
                 title="Parent Progress Portal"
               >
                 <BookOpen className="h-3.5 w-3.5 text-rose-400" />
@@ -103,7 +106,7 @@ export default function Navbar({
             {onTeacherPortalClick && (
               <button
                 onClick={onTeacherPortalClick}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1.5 text-xs font-mono text-amber-300 font-semibold transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1.5 text-xs font-sans text-amber-300 font-semibold transition-all cursor-pointer"
                 title="Teacher Portal Login"
               >
                 <Lock className="h-3.5 w-3.5 text-amber-400" />
@@ -112,25 +115,25 @@ export default function Navbar({
             )}
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-stone-700 bg-stone-800/90 hover:bg-stone-700 px-2.5 py-1.5 text-xs font-mono text-stone-200 transition-all cursor-pointer font-medium"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-stone-700 bg-stone-800/90 hover:bg-stone-700 px-2.5 py-1.5 text-xs font-sans text-stone-200 transition-all cursor-pointer font-medium"
             >
               <Share2 className="h-3.5 w-3.5 text-amber-400" />
               <span>Share</span>
             </button>
             <button
               onClick={handleBookClick}
-              className="bg-rose-600 hover:bg-rose-500 text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-xs cursor-pointer flex items-center gap-1.5 active:scale-95"
+              className="bg-rose-600 hover:bg-rose-500 text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider font-sans transition-all duration-200 shadow-xs cursor-pointer flex items-center gap-1.5 active:scale-95"
             >
               <Calendar className="h-3.5 w-3.5" />
               <span>Book Class</span>
             </button>
           </div>
 
-          {/* Mobile Header Right Actions (Standalone share button removed as requested) */}
+          {/* Mobile Header Right Actions */}
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={handleBookClick}
-              className="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1 cursor-pointer shadow-xs"
+              className="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider font-sans flex items-center gap-1 cursor-pointer shadow-xs"
             >
               <Calendar className="h-3.5 w-3.5" />
               <span>Book</span>
@@ -157,7 +160,7 @@ export default function Navbar({
                 onNavClick(item.id);
                 setIsOpen(false);
               }}
-              className={`block w-full text-left px-3 py-2.5 rounded-md text-xs font-mono uppercase tracking-wider ${
+              className={`block w-full text-left px-3 py-2.5 rounded-md text-xs font-sans uppercase tracking-wider ${
                 activeSection === item.id
                   ? 'bg-rose-950/60 text-rose-300 font-bold border-l-2 border-rose-500'
                   : 'text-stone-300 hover:bg-stone-800'
@@ -172,7 +175,7 @@ export default function Navbar({
                 handleShare();
                 setIsOpen(false);
               }}
-              className="w-full bg-stone-800/90 hover:bg-stone-700 text-stone-200 border border-stone-700 py-2.5 rounded-xl text-center text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer font-medium"
+              className="w-full bg-stone-800/90 hover:bg-stone-700 text-stone-200 border border-stone-700 py-2.5 rounded-xl text-center text-xs font-sans uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer font-medium"
             >
               <Share2 className="h-3.5 w-3.5 text-amber-400" />
               <span>Share Application Link</span>
@@ -183,7 +186,7 @@ export default function Navbar({
                   onParentPortalClick();
                   setIsOpen(false);
                 }}
-                className="w-full bg-stone-800/90 hover:bg-stone-700 text-stone-200 border border-stone-700 py-2.5 rounded-xl text-center text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer font-medium"
+                className="w-full bg-stone-800/90 hover:bg-stone-700 text-stone-200 border border-stone-700 py-2.5 rounded-xl text-center text-xs font-sans uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer font-medium"
               >
                 <BookOpen className="h-3.5 w-3.5 text-rose-400" />
                 <span>Parent Progress Portal</span>
@@ -195,7 +198,7 @@ export default function Navbar({
                   onTeacherPortalClick();
                   setIsOpen(false);
                 }}
-                className="w-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 py-2.5 rounded-xl text-center text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer font-semibold"
+                className="w-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 py-2.5 rounded-xl text-center text-xs font-sans uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer font-semibold"
               >
                 <Lock className="h-3.5 w-3.5 text-amber-400" />
                 <span>Teacher Admin Portal</span>
@@ -206,7 +209,7 @@ export default function Navbar({
                 handleBookClick();
                 setIsOpen(false);
               }}
-              className="w-full bg-rose-600 hover:bg-rose-500 text-white py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+              className="w-full bg-rose-600 hover:bg-rose-500 text-white py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider font-sans flex items-center justify-center gap-2 shadow-xs cursor-pointer"
             >
               <Calendar className="h-4 w-4" />
               <span>Book Teacher Brigid</span>
