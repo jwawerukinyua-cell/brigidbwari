@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Menu, X, BookOpen, Calendar, Share2, Lock, Languages } from 'lucide-react';
+import { Menu, X, BookOpen, Calendar, Share2, Lock } from 'lucide-react';
 import MKLogo from './MKLogo';
 
 interface NavbarProps {
@@ -60,12 +60,14 @@ export default function Navbar({
     <nav className="sticky top-0 z-40 w-full border-b border-stone-800 bg-[#0F1B2E] shadow-md backdrop-blur-md no-print text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo Brand */}
+          {/* Logo Brand: Logo icon & subtitle hidden on mobile, fully visible on desktop/tablet */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavClick('profile')}>
-            <MKLogo />
+            <div className="hidden sm:block">
+              <MKLogo />
+            </div>
             <div>
               <span className="block font-serif text-sm sm:text-base font-bold tracking-tight text-white">Teacher Brigid Bwari</span>
-              <span className="block font-mono text-[9px] sm:text-[10px] tracking-wider text-amber-400 uppercase font-bold leading-none">English & Literature Specialist</span>
+              <span className="hidden sm:block font-mono text-[9px] sm:text-[10px] tracking-wider text-amber-400 uppercase font-bold leading-none">English & Literature Specialist</span>
             </div>
           </div>
 
@@ -124,16 +126,8 @@ export default function Navbar({
             </button>
           </div>
 
-          {/* Mobile Header Right Actions */}
-          <div className="flex md:hidden items-center gap-1.5 sm:gap-2">
-            <button
-              onClick={handleShare}
-              className="inline-flex items-center justify-center p-2 rounded-lg border border-stone-700 bg-stone-800 text-amber-400 hover:bg-stone-700 transition-all cursor-pointer active:scale-95"
-              title="Share Website"
-              aria-label="Share Website"
-            >
-              <Share2 className="h-4 w-4" />
-            </button>
+          {/* Mobile Header Right Actions (Standalone share button removed as requested) */}
+          <div className="flex md:hidden items-center gap-2">
             <button
               onClick={handleBookClick}
               className="bg-rose-600 hover:bg-rose-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1 cursor-pointer shadow-xs"
