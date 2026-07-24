@@ -85,19 +85,19 @@ export default function App() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
-          <div>
+          <div className="text-center lg:text-left">
             <span className="text-xs font-sans tracking-widest text-amber-900 uppercase block mb-3 font-bold">
               Qualified English & Literature Educator (B.Ed, Kabarak University)
             </span>
-            <h1 className="text-4xl md:text-5xl font-serif text-stone-950 tracking-tight leading-tight mb-6 max-w-xl font-bold">
+            <h1 className="text-4xl md:text-5xl font-sans font-extrabold text-stone-950 tracking-tight leading-tight mb-6 max-w-xl mx-auto lg:mx-0">
               English Language & Literature Private Tuition
             </h1>
-            <p className="text-base text-stone-700 font-sans leading-relaxed max-w-xl mb-8">
+            <p className="text-base text-stone-700 font-sans leading-relaxed max-w-xl mb-8 mx-auto lg:mx-0">
               Interactive, student-centered 1-on-1 tuition for grammar, set book comprehension, essay drafting, and spoken English confidence. Tailored learning plans for CBC and 8-4-4 candidates in Nairobi & Kisii, or globally online.
             </p>
 
             {/* HERO ACTION BUTTON */}
-            <div className="mb-8 w-full max-w-sm">
+            <div className="mb-8 w-full max-w-sm mx-auto lg:mx-0">
               <button 
                 onClick={() => setIsConsultationOpen(true)}
                 className="w-full bg-rose-700 hover:bg-rose-800 text-white font-sans font-bold px-8 py-4 rounded-xl transition-all shadow-md text-xs uppercase tracking-wider text-center active:scale-98 cursor-pointer flex items-center justify-center gap-2 h-14"
@@ -109,14 +109,14 @@ export default function App() {
           </div>
 
           {/* EDITORIAL COLUMN: MEET YOUR TEACHER */}
-          <div className="border border-stone-200/90 bg-white p-6 sm:p-7 rounded-2xl shadow-sm relative overflow-hidden">
-            <span className="text-xs font-sans tracking-widest text-amber-900 uppercase block mb-3 font-bold">
+          <div className="border border-stone-200/90 bg-white p-6 sm:p-7 rounded-2xl shadow-sm relative overflow-hidden text-center sm:text-left">
+            <span className="text-xs font-sans tracking-widest text-amber-900 uppercase block mb-3 font-bold text-center sm:text-left">
               Your Professional Educator
             </span>
             
             {/* Profile Photo & Info Layout */}
-            <div className="flex flex-col sm:flex-row items-center gap-5 mb-5">
-              <div className="relative shrink-0">
+            <div className="flex flex-col items-center sm:flex-row sm:items-center gap-5 mb-5">
+              <div className="relative shrink-0 mx-auto sm:mx-0">
                 <img
                   src={teacherBrigidPhoto}
                   alt="Teacher Brigid Bwari Monari"
@@ -133,8 +133,8 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="text-center sm:text-left">
-                <h3 className="text-2xl font-serif text-stone-950 font-bold">Teacher Brigid Bwari</h3>
+              <div className="text-center sm:text-left w-full flex flex-col items-center sm:items-start">
+                <h3 className="text-2xl font-sans font-bold text-stone-950">Teacher Brigid Bwari</h3>
                 <p className="text-xs font-sans text-amber-900 font-bold mt-1">B.Ed in English & Literature</p>
                 <p className="text-xs text-stone-600 font-sans mt-1">Kabarak University (Second Class Upper)</p>
                 <div className="mt-3 flex flex-wrap gap-1.5 justify-center sm:justify-start">
@@ -186,7 +186,7 @@ export default function App() {
             <span className="text-[10px] font-sans tracking-widest text-amber-400 uppercase block mb-2 font-bold">
               Interactive Enrollment
             </span>
-            <h3 className="text-xl font-serif text-white mb-3 font-bold">
+            <h3 className="text-xl font-sans font-bold text-white mb-3">
               Ready to Accelerate Your Child's Fluency & Grade?
             </h3>
             <p className="text-xs text-stone-300 font-sans max-w-lg mx-auto mb-6 leading-relaxed">
@@ -236,7 +236,7 @@ export default function App() {
           {/* Top Row */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-stone-800 text-center md:text-left">
             <div className="shrink-0">
-              <span className="block font-serif text-lg font-bold tracking-tight text-white">Teacher Brigid Bwari Monari</span>
+              <span className="block font-sans font-bold text-lg tracking-tight text-white">Teacher Brigid Bwari Monari</span>
               <span className="block font-sans text-[10px] tracking-widest text-amber-400 font-bold uppercase mt-0.5">English & Literature Private Tuition</span>
             </div>
 
