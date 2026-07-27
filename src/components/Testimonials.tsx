@@ -137,7 +137,7 @@ export default function Testimonials() {
           Verified Academic Results & Parent Testimonials
         </span>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <h2 className="text-2xl sm:text-3xl font-serif text-stone-950 tracking-tight font-bold">
+          <h2 className="text-2xl sm:text-3xl font-sans text-stone-950 tracking-tight font-bold">
             VERIFIED LEARNER OUTCOMES
           </h2>
           <button

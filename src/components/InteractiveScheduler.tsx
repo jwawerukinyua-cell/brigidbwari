@@ -183,7 +183,7 @@ export default function InteractiveScheduler({ onInitiateBooking }: InteractiveS
         <span className="text-[10px] font-mono tracking-widest text-amber-900 uppercase block font-bold">
           Direct Interactive Booking Engine
         </span>
-        <h2 className="text-3xl font-serif text-stone-950 font-bold">
+        <h2 className="text-3xl font-sans text-stone-950 font-bold">
           Reserve English & Literature Tuition
         </h2>
         <p className="text-xs text-stone-600 leading-relaxed">
