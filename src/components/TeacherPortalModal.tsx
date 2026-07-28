@@ -91,7 +91,7 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
                   </h3>
                 </div>
               </div>
-              <button onClick={onClose} className="p-1 rounded-lg text-stone-500 hover:bg-stone-200 hover:text-stone-900">
+              <button type="button" onClick={onClose} className="p-1 rounded-lg text-stone-500 hover:bg-stone-200 hover:text-stone-900">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -191,4 +191,3 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
                         <div className="flex justify-between items-center text-xs pt-1">
                           <div className="text-stone-600">
                             Lessons covered: <span className="font-bold text-stone-950">{booking.lessonsCovered}</span> / {booking.totalLessonsBooked || 4}
-                          </div>
