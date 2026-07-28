@@ -21,7 +21,7 @@ export interface BookingData {
   hours: number;
   selectedSlots: string[];
   totalCost: number;
-  dateCreated: string;
+  dateCreated: string; // Expected format example: 'July 20, 2026' or '2026-07-20'
   status: 'Confirmed' | 'Pending Payment';
   location: string;
   deliveryMode?: 'In-Person Home Visit' | 'Online Virtual Classroom';
@@ -38,15 +38,36 @@ export interface BookingData {
 
 export const HOURLY_RATE = 1500; // Base hourly rate for in-person single English/Lit subject
 
-export function getPlatformCommissionRate(mode?: 'In-Person Home Visit' | 'Online Virtual Classroom'): number {
-  if (mode === 'Online Virtual Classroom') {
-    return 0.15; // 15% platform allocation
-  }
-  return 0.10; // 10% home visit admin allocation
+// Helper function to check if a booking is older than 12 months (365 days)
+export function hasStudentGraduated(dateCreatedString: string): boolean {
+  const createdDate = new Date(dateCreatedString);
+  const today = new Date();
+  
+  // Calculate difference in milliseconds and convert to days
+  const timeDifference = today.getTime() - createdDate.getTime();
+  const daysPassed = timeDifference / (1000 * 60 * 60 * 24);
+  
+  return daysPassed >= 365;
 }
 
-export function getCommissionBreakdown(totalCost: number, mode?: 'In-Person Home Visit' | 'Online Virtual Classroom') {
-  const commissionPercent = getPlatformCommissionRate(mode);
+export function getPlatformCommissionRate(
+  mode?: 'In-Person Home Visit' | 'Online Virtual Classroom', 
+  dateCreated?: string
+): number {
+  // If the student has been on the platform for over 12 months, commission drops to 0%
+  if (dateCreated && hasStudentGraduated(dateCreated)) {
+    return 0.0; 
+  }
+
+  // Active student commission tiers
+  if (mode === 'Online Virtual Classroom') {
+    return 0.40; // 40% platform allocation for online classes
+  }
+  return 0.30; // 30% home visit admin allocation for physical classes
+}
+
+export function getCommissionBreakdown(totalCost: number, mode?: 'In-Person Home Visit' | 'Online Virtual Classroom', dateCreated?: string) {
+  const commissionPercent = getPlatformCommissionRate(mode, dateCreated);
   const platformCommission = Math.round(totalCost * commissionPercent);
   const teacherPayout = totalCost - platformCommission;
   
