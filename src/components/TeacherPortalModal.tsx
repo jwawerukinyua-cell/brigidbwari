@@ -191,3 +191,33 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
                         <div className="flex justify-between items-center text-xs pt-1">
                           <div className="text-stone-600">
                             Lessons covered: <span className="font-bold text-stone-950">{booking.lessonsCovered}</span> / {booking.totalLessonsBooked || 4}
+                          </div>
+                          <div className="flex gap-2">
+                            <button 
+                              type="button"
+                              onClick={() => handleIncrementLesson(booking)}
+                              className="bg-stone-200 hover:bg-stone-300 px-2.5 py-1 rounded-lg text-stone-800 font-medium transition-all"
+                            >
+                              + Log Lesson
+                            </button>
+                            <button 
+                              type="button"
+                              onClick={() => handleDelete(booking.id)}
+                              className="text-stone-400 hover:text-rose-600 p-1 rounded-lg transition-all"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
