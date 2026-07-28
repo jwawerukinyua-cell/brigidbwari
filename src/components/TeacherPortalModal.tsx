@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Lock, Key, CheckCircle, Trash2, Edit3, UserCheck, Calendar, ShieldAlert, Plus, BookOpen, PlusCircle, Save } from 'lucide-react';
+import { X, Lock, Key, Trash2, ShieldAlert } from 'lucide-react';
 import { BookingData, getAllBookings, saveBooking, getCommissionBreakdown } from '../lib/bookingSystem';
 
 interface TeacherPortalModalProps {
@@ -18,12 +18,6 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [bookings, setBookings] = useState<BookingData[]>([]);
-  const [editingBooking, setEditingBooking] = useState<BookingData | null>(null);
-
-  // Attendance logging inputs when editing
-  const [newLogDate, setNewLogDate] = useState('');
-  const [newLogTopic, setNewLogTopic] = useState('');
-  const [newLogStatus, setNewLogStatus] = useState<'Present' | 'Absent' | 'Rescheduled'>('Present');
 
   useEffect(() => {
     if (isOpen) {
@@ -45,22 +39,6 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
     }
   };
 
-  const handleStatusChange = (id: string, newStatus: 'Confirmed' | 'Pending Payment') => {
-    const updated = bookings.map(b => {
-      if (b.id === id) {
-        const u = {
-          ...b,
-          status: newStatus,
-          paymentStatus: (newStatus === 'Confirmed' ? 'Cleared / Active' : 'Pending Payment') as 'Cleared / Active' | 'Pending Payment'
-        };
-        saveBooking(u);
-        return u;
-      }
-      return b;
-    });
-    setBookings(updated);
-  };
-
   const handleIncrementLesson = (booking: BookingData) => {
     const updatedLessonsCovered = booking.lessonsCovered + 1;
     const total = booking.totalLessonsBooked || booking.hours * 2 || 4;
@@ -80,44 +58,6 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
       setBookings(updated);
       localStorage.setItem('brigid_tuition_bookings', JSON.stringify(updated));
     }
-  };
-
-  const handleSaveEdit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editingBooking) return;
-
-    const total = editingBooking.totalLessonsBooked || editingBooking.hours * 2 || 4;
-    const updated: BookingData = {
-      ...editingBooking,
-      totalLessonsBooked: total,
-      lessonsRemaining: Math.max(0, total - editingBooking.lessonsCovered)
-    };
-
-    saveBooking(updated);
-    setBookings(bookings.map(b => b.id === updated.id ? updated : b));
-    setEditingBooking(null);
-  };
-
-  const handleAddAttendanceLog = () => {
-    if (!editingBooking || !newLogDate || !newLogTopic) return;
-
-    const newRecord = {
-      id: Date.now().toString(),
-      date: newLogDate,
-      topic: newLogTopic,
-      status: newLogStatus
-    };
-
-    const currentLogs = editingBooking.attendanceLogs || [];
-    const updatedBooking = {
-      ...editingBooking,
-      attendanceLogs: [newRecord, ...currentLogs],
-      lessonsCovered: newLogStatus === 'Present' ? editingBooking.lessonsCovered + 1 : editingBooking.lessonsCovered
-    };
-
-    setEditingBooking(updatedBooking);
-    setNewLogDate('');
-    setNewLogTopic('');
   };
 
   return (
@@ -192,7 +132,7 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
               </form>
             ) : (
               /* Dashboard View */
-              <div className="p-6 space-y-6 overflow-y-auto">
+              <div className="p-6 space-y-6 overflow-y-auto flex-1">
                 <div className="flex justify-between items-center border-b border-stone-200 pb-4">
                   <div>
                     <span className="text-xs text-amber-900 font-mono font-bold">Authenticated as Teacher Brigid Bwari</span>
@@ -203,7 +143,6 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
                 {/* Booking List Container */}
                 <div className="space-y-4">
                   {bookings.map((booking) => {
-                    // Pull our custom 12-month calculated breakdown
                     const split = getCommissionBreakdown(booking.totalCost, booking.deliveryMode, booking.dateCreated);
 
                     return (
@@ -225,3 +164,31 @@ export default function TeacherPortalModal({ isOpen, onClose }: TeacherPortalMod
                         <div className="bg-white border border-stone-200 rounded-lg p-3 text-xs space-y-1.5 shadow-xs">
                           <div className="flex justify-between text-stone-500 font-mono text-[11px]">
                             <span>Class Mode:</span>
+                            <span className="text-stone-800 font-sans font-semibold">{booking.deliveryMode || 'In-Person Home Visit'}</span>
+                          </div>
+                          <div className="flex justify-between border-t border-stone-100 pt-1.5 font-sans">
+                            <span className="text-stone-600">Total Lesson Fee:</span>
+                            <span className="font-bold text-stone-950">KES {booking.totalCost.toLocaleString()}</span>
+                          </div>
+                          <div className="flex justify-between text-stone-600">
+                            <span>System Admin Cut ({split.commissionPercent}%):</span>
+                            <span className="text-rose-700 font-mono">- KES {split.platformCommission.toLocaleString()}</span>
+                          </div>
+                          <div className="flex justify-between border-t border-dashed border-stone-200 pt-1.5 text-stone-900 font-semibold">
+                            <span>Teacher Earned Payout ({split.teacherPayoutPercent}%):</span>
+                            <span className="text-emerald-700 font-mono bg-emerald-50 px-2 py-0.5 rounded-md">
+                              KES {split.teacherPayout.toLocaleString()}
+                            </span>
+                          </div>
+                          {split.commissionPercent === 0 && (
+                            <div className="text-[10px] text-emerald-800 bg-emerald-50 border border-emerald-200 rounded p-1 text-center font-mono font-bold mt-1">
+                              🎉 12-MONTH MILESTONE MET: 0% COMMISSION FLAT RATE ACTIVE
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Quick Control Actions */}
+                        <div className="flex justify-between items-center text-xs pt-1">
+                          <div className="text-stone-600">
+                            Lessons covered: <span className="font-bold text-stone-950">{booking.lessonsCovered}</span> / {booking.totalLessonsBooked || 4}
+                          </div>
